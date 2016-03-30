@@ -18,12 +18,10 @@ int main()
 		exit(1);
 	}
 
-//	struct sockaddr_in remote; //output val
-	//socklen_t len = sizeof(remote); //output val
 	char buf[1024];
 	memset(buf,'\0',sizeof(buf));
 
-    struct sockaddr_in remote;
+        struct sockaddr_in remote;
 	remote.sin_family = AF_INET;
 	remote.sin_port = htons(_PORT_);
 	remote.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -59,8 +57,7 @@ int main()
 		ssize_t echo_size = recvfrom(sock,buf,sizeof(buf) - 1,0,(struct sockaddr*)&remote,&len);
 		if(echo_size < 0)
 		{
-			printf("2\n");
-		//	perror("recvfrom");
+			perror("recvfrom");
 			break;
 		}
 		else
